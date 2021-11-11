@@ -7,47 +7,47 @@ const DashboardTemplate = ({ pageName }) => {
     <main id="wrapper">
       <section id="side-bar">
         <div id="branding">
-          <Image src="/images/logo.png" height={48} width={42} />
+          <Image alt="" src="/images/logo.png" height={48} width={42} />
         </div>
         <div>
           <div className="active-link cursor-pointer">
-            <Image height={0} width={0} src="/images/dashboard.png" />
+            <Image alt="" height={0} width={0} src="/images/dashboard.png" />
             <a href="#">
               <p>Dashboard</p>
             </a>
           </div>
           <div className="icon-link cursor-pointer">
-            <Image height={0} width={0} src="/images/food.png" />
+            <Image alt="" height={0} width={0} src="/images/food.png" />
             <a href="#">
               <p>Food</p>
             </a>
           </div>
           <div className="icon-link cursor-pointer">
-            <Image height={0} width={0} src="/images/wallet.png" />
+            <Image alt="" height={0} width={0} src="/images/wallet.png" />
             <a href="#">
               <p>Wallet</p>
             </a>
           </div>
           <div className="icon-link cursor-pointer">
-            <Image height={0} width={0} src="/images/shop.png" />
+            <Image alt="" height={0} width={0} src="/images/shop.png" />
             <a href="#">
               <p>Shop</p>
             </a>
           </div>
           <div className="icon-link cursor-pointer">
-            <Image height={0} width={0} src="/images/cart.png" />
+            <Image alt="" height={0} width={0} src="/images/cart.png" />
             <a href="#">
               <p>Cart</p>
             </a>
           </div>
           <div className="icon-link cursor-pointer">
-            <Image height={0} width={0} src="/images/settings.png" />
+            <Image alt="" height={0} width={0} src="/images/settings.png" />
             <a href="#">
               <p>Settings</p>
             </a>
           </div>
           <div className="icon-link cursor-pointer">
-            <Image height={0} width={0} src="/images/logout.png" />
+            <Image alt="" height={0} width={0} src="/images/logout.png" />
             <a href="#">
               <p>Logout</p>
             </a>
@@ -70,16 +70,16 @@ const DashboardTemplate = ({ pageName }) => {
           </form>
           <div id="user">
             <div>
-              <Image height={40} width={40} src="/images/notification.png" />
+              <Image alt="" height={40} width={40} src="/images/notification.png" />
             </div>
             <div id="user-profile">
               <div className="user-image">
-                <Image height={50} width={50} src="/images/user-image.png" />
+                <Image alt="" height={50} width={50} src="/images/user-image.png" />
               </div>
               <div id="user-info">
                 <h4>Hello User</h4>
                 <p>
-                  Student <Image height={0} width={0} src="/images/caret-down.png" />
+                  Student <Image alt="" height={0} width={0} src="/images/caret-down.png" />
                 </p>
               </div>
             </div>
