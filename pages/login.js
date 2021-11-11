@@ -15,7 +15,7 @@ export default function Login() {
       <Head>
         <title>Login | OrderIt</title>
         <meta name="description" content="OrderIt Food Ordering Service" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/images/logo.png" />
       </Head>
       <div className="min-h-screen bg-white flex">
         <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">

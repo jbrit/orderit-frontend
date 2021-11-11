@@ -3,7 +3,11 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function Login() {
-  const [authData, setAuthData] = useState({ email: "", password: "", confirm_password: ""});
+  const [authData, setAuthData] = useState({
+    email: "",
+    password: "",
+    confirm_password: "",
+  });
   const disabled = false;
   const setField = (field, value) =>
     setAuthData({ ...authData, [field]: value });
@@ -15,7 +19,7 @@ export default function Login() {
       <Head>
         <title>Login | OrderIt</title>
         <meta name="description" content="OrderIt Food Ordering Service" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/images/logo.png" />
       </Head>
       <div className="min-h-screen bg-white flex">
         <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
@@ -102,7 +106,9 @@ export default function Login() {
                       type="password"
                       autoComplete="current-password"
                       value={authData.confirm_password}
-                      onChange={(e) => setField("confirm_password", e.target.value)}
+                      onChange={(e) =>
+                        setField("confirm_password", e.target.value)
+                      }
                       required
                       className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     />

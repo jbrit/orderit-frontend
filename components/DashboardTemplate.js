@@ -1,52 +1,53 @@
 import React from "react";
 import TableComponent from "./TableComponent";
+import Image from "next/image";
 
 const DashboardTemplate = ({ pageName }) => {
   return (
     <main id="wrapper">
       <section id="side-bar">
         <div id="branding">
-          <img src="./images/Order iT Logo 1 (2).png" />
+          <Image src="/images/logo.png" height={48} width={42} />
         </div>
         <div>
-          <div class="active-link cursor-pointer">
-            <img src="./images/apps 1.png" />
+          <div className="active-link cursor-pointer">
+            <Image height={0} width={0} src="/images/dashboard.png" />
             <a href="#">
               <p>Dashboard</p>
             </a>
           </div>
-          <div class="icon-link cursor-pointer">
-            <img src="images/Group (1).png" />
+          <div className="icon-link cursor-pointer">
+            <Image height={0} width={0} src="/images/food.png" />
             <a href="#">
               <p>Food</p>
             </a>
           </div>
-          <div class="icon-link cursor-pointer">
-            <img src="images/wallet.png" />
+          <div className="icon-link cursor-pointer">
+            <Image height={0} width={0} src="/images/wallet.png" />
             <a href="#">
               <p>Wallet</p>
             </a>
           </div>
-          <div class="icon-link cursor-pointer">
-            <img src="images/Vector (5).png" />
+          <div className="icon-link cursor-pointer">
+            <Image height={0} width={0} src="/images/shop.png" />
             <a href="#">
               <p>Shop</p>
             </a>
           </div>
-          <div class="icon-link cursor-pointer">
-            <img src="images/shopping-cart 2.png" />
+          <div className="icon-link cursor-pointer">
+            <Image height={0} width={0} src="/images/cart.png" />
             <a href="#">
               <p>Cart</p>
             </a>
           </div>
-          <div class="icon-link cursor-pointer">
-            <img src="images/Vector (6).png" />
+          <div className="icon-link cursor-pointer">
+            <Image height={0} width={0} src="/images/settings.png" />
             <a href="#">
-              <p>Setting</p>
+              <p>Settings</p>
             </a>
           </div>
-          <div class="icon-link cursor-pointer">
-            <img src="images/Vector12.png" />
+          <div className="icon-link cursor-pointer">
+            <Image height={0} width={0} src="/images/logout.png" />
             <a href="#">
               <p>Logout</p>
             </a>
@@ -64,21 +65,21 @@ const DashboardTemplate = ({ pageName }) => {
             </h1>
             <p>{new Date().toDateString()}</p>
           </div>
-          <form>
+          <form className="search-form">
             <input type="text" placeholder="Search for food, drinks, etc .." />
           </form>
           <div id="user">
             <div>
-              <img src="./images/notification.png" />
+              <Image height={40} width={40} src="/images/notification.png" />
             </div>
             <div id="user-profile">
-              <div class="user-image">
-                <img src="images/DSC_0057 (2) 1.png" />
+              <div className="user-image">
+                <Image height={50} width={50} src="/images/user-image.png" />
               </div>
               <div id="user-info">
-                <h4>Tamara Bode</h4>
+                <h4>Hello User</h4>
                 <p>
-                  Student <img src="./images/Polygon 2.png" />
+                  Student <Image height={0} width={0} src="/images/caret-down.png" />
                 </p>
               </div>
             </div>
@@ -118,7 +119,9 @@ const DashboardTemplate = ({ pageName }) => {
                 <div className="pt-1 font-bold text-3xl">₦120,350</div>
               </div>
             </div>
-            <div className="font-semibold text-2xl mb-4">Transaction History</div>
+            <div className="font-semibold text-2xl mb-4">
+              Transaction History
+            </div>
             <TableComponent />
           </div>
         </>

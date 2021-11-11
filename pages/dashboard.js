@@ -1,6 +1,4 @@
 import Head from "next/head";
-import Link from "next/link";
-import { useState } from "react";
 import DashboardTemplate from "../components/DashboardTemplate";
 
 export default function Login() {
@@ -9,7 +7,7 @@ export default function Login() {
       <Head>
         <title>Dashboard | OrderIt</title>
         <meta name="description" content="OrderIt Food Ordering Service" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/images/logo.png" />
       </Head>
       <DashboardTemplate pageName={"Wallet"} />
     </div>

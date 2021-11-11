@@ -5,7 +5,7 @@ export default function Home() {
       <Head>
         <title>Home | OrderIt</title>
         <meta name="description" content="OrderIt Food Ordering Service" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/images/logo.png" />
       </Head>
       <main>Welcome, more updates rolling in soon!</main>
     </div>
