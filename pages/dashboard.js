@@ -11,6 +11,7 @@ export default function Login() {
         <title>Dashboard | OrderIt</title>
         <meta name="description" content="OrderIt Food Ordering Service" />
         <link rel="icon" href="/images/logo.png" />
+        {/* eslint-disable @next/next/no-sync-scripts */}
         <script src="https://js.paystack.co/v1/inline.js"></script>
       </Head>
       <DashboardTemplate
