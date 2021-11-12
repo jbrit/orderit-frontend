@@ -15,29 +15,29 @@ export class Client {
     axios.defaults.headers.post["Content-Type"] = "application/json";
     axios.interceptors.response.use(null, async (error) => {
       if (error.config && error.response && error.response.status === 401) {
-        if (error.config.data && error.config.data.includes("refreshToken")) {
+        if (error?.response?.data?.message?.includes("refresh")) {
           return Promise.reject(error);
         }
         // Correct Later
-        if (error.response.status === "400") {
+        if (error.response.data.message.includes("token not valid")) {
           const refreshToken = await this.storage.getItem(this.refreshTokenKey);
 
           let token = {};
 
           const request = await axios({
             method: "post",
-            data: { refreshToken },
+            data: { refresh: refreshToken },
             responseType: "json",
-            url: "token/refresh",
+            url: "/token/refresh/",
             baseURL: this.authUrl,
           });
 
           token = request.data;
 
-          await this.storage.setItem(this.accessTokenKey, token.accessToken);
+          await this.storage.setItem(this.accessTokenKey, token.access);
 
-          if (token.refreshToken) {
-            this.storage.setItem(this.refreshTokenKey, token.refreshToken);
+          if (token.refresh) {
+            this.storage.setItem(this.refreshTokenKey, token.refresh);
           }
 
           error.config.headers.Authorization = `Bearer ${token.accessToken}`;
@@ -91,7 +91,7 @@ export class Client {
     }
 
     return {
-      body: response ? response.data : text,
+      data: response ? response.data : text,
       headers: response ? response.headers : {},
       status: response ? response.status : 200,
     };

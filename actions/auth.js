@@ -5,6 +5,14 @@ export async function login(email, password) {
     method: "POST",
     body: { email, password },
   });
+  
+  await api.setToken({
+    token: {
+      accessToken: response.data.access,
+      refreshToken: response.data.refresh,
+    },
+  });
+
   return response.data;
 }
 
@@ -25,7 +33,7 @@ export async function refreshToken(refresh) {
 }
 
 export async function activateAccount(uid, token) {
-  const response = await api.request(`/api/auth/activate/${uid}/${token}/`, {
+  const response = await api.request(`/activate/${uid}/${token}/`, {
     method: "GET",
   });
   return response.data;

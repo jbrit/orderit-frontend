@@ -1,5 +1,5 @@
 export class LocalStorage {
-    cacheRecord = {};
+    cache = {};
   
     getItem(key){
       if (this.cache[key]) {

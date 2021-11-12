@@ -1,5 +1,5 @@
 import { Client } from "./client";
-import Config from '../config';
+import Config from "../config";
 import { LocalStorage } from "./storage";
 
 export function createAuthorizationHeader(token) {
@@ -62,34 +62,12 @@ export class Api {
   }
 
   async getToken() {
-    let refreshToken;
+    const [accessToken, refreshToken] = await Promise.all([
+      this.storage.getItem(this.accessTokenKey),
+      this.storage.getItem(this.refreshTokenKey),
+    ]);
 
-    try {
-      const accessToken = await this.storage.getItem(this.accessTokenKey);
-
-      if (accessToken === null) {
-        throw new Error("InvalidAccessToken");
-      }
-
-      try {
-        refreshToken = await this.storage.getItem(this.refreshTokenKey);
-
-        if (refreshToken === null) {
-          throw new Error("InvalidRefreshToken");
-        }
-      } catch (error) {
-        return {
-          accessToken,
-        };
-      }
-
-      return {
-        accessToken,
-        refreshToken,
-      };
-    } catch (error) {
-      return Promise.reject();
-    }
+    return { accessToken, refreshToken };
   }
 
   removeToken() {
@@ -99,45 +77,13 @@ export class Api {
     ]);
   }
 
-  async refreshToken() {
-    const { refreshToken } = await this.getToken();
-
-    try {
-      const token = await this.request("/token/refresh", {
-        body: { refreshToken },
-        method: "post",
-      });
-
-      await this.setToken({ token });
-
-      return token;
-    } catch (error) {
-      return Promise.reject();
-    }
-  }
-
   async setToken({ token }) {
-    await this.storage.setItem(this.accessTokenKey, token.accessToken);
-
-    if (token.refreshToken) {
-      await this.storage.setItem(this.refreshTokenKey, token.refreshToken);
-    }
-
+    console.log(this, this.storage);
+    await Promise.all([
+      this.storage.setItem(this.accessTokenKey, token.accessToken),
+      this.storage.setItem(this.refreshTokenKey, token.refreshToken),
+    ]);
     return token;
-  }
-
-  async setItem(key, value) {
-    try {
-      await this.storage.setItem(key, JSON.stringify(value));
-
-      return Promise.resolve();
-    } catch (err) {
-      return Promise.reject(err);
-    }
-  }
-
-  async getItem(key) {
-    return this.storage.getItem(key);
   }
 }
 

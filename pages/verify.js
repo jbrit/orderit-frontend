@@ -6,13 +6,17 @@ import Link from "next/link";
 import { useEffect } from "react";
 
 export default function Verify() {
-  const { query } = useRouter();
+  const router = useRouter();
+  const { uid, token } = router.query;
   const activateMutation = useMutation(() => {
-    return activateAccount(query.uid ?? "", query.token ?? "");
+    return activateAccount(uid ?? "", token ?? "");
   });
+
   useEffect(() => {
-    activateMutation.mutateAsync();
-  }, [activateMutation.mutateAsync]);
+    if (router.isReady) {
+      activateMutation.mutateAsync();
+    }
+  }, [activateMutation.mutateAsync, router.isReady]);
   return (
     <>
       <div className="min-h-screen pt-16 pb-12 flex flex-col bg-white">
@@ -21,7 +25,12 @@ export default function Verify() {
             <Link href="/">
               <a className="inline-flex">
                 <span className="sr-only">OrderIt</span>
-                <Image src="/images/logo.png" alt="OrderIt" height={48} width={42} />
+                <Image
+                  src="/images/logo.png"
+                  alt="OrderIt"
+                  height={48}
+                  width={42}
+                />
               </a>
             </Link>
           </div>
