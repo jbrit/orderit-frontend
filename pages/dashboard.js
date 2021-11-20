@@ -1,9 +1,12 @@
 import Head from "next/head";
 import { useQuery } from "react-query";
+import { getMe } from "../actions/auth";
 import { myWallet } from "../actions/wallet";
 import DashboardTemplate from "../components/DashboardTemplate";
+import WalletMain from "../components/WalletMain";
 
 export default function Login() {
+  const getMeQuery = useQuery("me", getMe);
   const walletQuery = useQuery("my-wallet", myWallet);
   return (
     <div>
@@ -16,10 +19,11 @@ export default function Login() {
       </Head>
       <DashboardTemplate
         pageName={"Wallet"}
-        walletQuery={walletQuery}
-        loading={walletQuery.isLoading}
-        success={walletQuery.isSuccess}
-      />
+        loading={getMeQuery.isLoading || walletQuery.isLoading}
+        success={getMeQuery.isSuccess && walletQuery.isSuccess}
+      >
+        <WalletMain getMeQuery={getMeQuery} walletQuery={walletQuery} />
+      </DashboardTemplate>
     </div>
   );
 }

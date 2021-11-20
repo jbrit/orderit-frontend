@@ -1,10 +1,7 @@
 import React from "react";
-import TableComponent from "./TableComponent";
 import Image from "next/image";
-import { payWithPaystack } from "../actions/wallet";
-import Swal from "sweetalert2";
 
-const DashboardTemplate = ({ pageName, loading, success, walletQuery }) => {
+const DashboardTemplate = ({ pageName, loading, success, children }) => {
   return (
     <main id="wrapper">
       <section id="side-bar">
@@ -110,69 +107,7 @@ const DashboardTemplate = ({ pageName, loading, success, walletQuery }) => {
             <span>Loading</span>
           </div>
         )}
-        {success && (
-          <>
-            <div className="dashboard-container py-10">
-              <div className="md:flex items-center mb-5">
-                <div className="flex flex-col mr-auto mb-5">
-                  <span className="text-2xl">Wallet Balance</span>
-                  <span className="font-bold text-5xl">
-                    ₦ {walletQuery.data.balance}
-                  </span>
-                </div>
-                <button
-                  style={{ background: "#251F2D" }}
-                  className="py-5 pl-12 pr-4 text-white uppercase mr-4"
-                  onClick={() =>
-                    payWithPaystack("pro.ajibolaojo@gmail.com", 100)
-                  }
-                >
-                  Fund Wallet
-                </button>
-                <button
-                  style={{ background: "#251F2D" }}
-                  className="py-5 pl-12 pr-4 text-white uppercase"
-                  onClick={() => {
-                    Swal.fire(
-                      "Coming Soon",
-                      "You would soon be able to send funds to other users",
-                      "info"
-                    );
-                  }}
-                >
-                  Transfer Funds
-                </button>
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-5 mb-8">
-                <div
-                  style={{ background: "#DDF6F8" }}
-                  className="p-9 rounded-lg"
-                >
-                  Amount Spent
-                  <div className="pt-1 font-bold text-3xl">₦0</div>
-                </div>
-                <div
-                  style={{ background: "#FFDD8C" }}
-                  className="p-9 rounded-lg"
-                >
-                  Amount Sent
-                  <div className="pt-1 font-bold text-3xl">₦0</div>
-                </div>
-                <div
-                  style={{ background: "#E5E2FF" }}
-                  className="p-9 rounded-lg"
-                >
-                  Amount Received
-                  <div className="pt-1 font-bold text-3xl">₦0</div>
-                </div>
-              </div>
-              <div className="font-semibold text-2xl mb-4">
-                Transaction History
-              </div>
-              <TableComponent />
-            </div>
-          </>
-        )}
+        {success && children}
       </section>
     </main>
   );

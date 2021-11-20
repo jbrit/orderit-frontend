@@ -40,7 +40,7 @@ export class Client {
             this.storage.setItem(this.refreshTokenKey, token.refresh);
           }
 
-          error.config.headers.Authorization = `Bearer ${token.accessToken}`;
+          error.config.headers.Authorization = `Bearer ${token.access}`;
           return axios.request(error.config);
         }
       }
