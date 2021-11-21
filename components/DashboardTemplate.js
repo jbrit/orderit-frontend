@@ -1,52 +1,59 @@
 import React from "react";
 import Image from "next/image";
+import Food from "./menu-icons/Food";
+import Wallet from "./menu-icons/Wallet";
+import Cart from "./menu-icons/Cart";
+import Shop from "./menu-icons/Shop";
+import Settings from "./menu-icons/Settings";
+import Dashboard from "./menu-icons/Dashboard";
+import Logout from "./menu-icons/Logout";
 
 const DashboardTemplate = ({ pageName, loading, success, children }) => {
   return (
-    <main id="wrapper">
+    <main className="flex relative min-h-screen" id="wrapper">
       <section id="side-bar">
-        <div id="branding">
+        <div className="flex items-center justify-center" id="branding">
           <Image alt="" src="/images/logo.png" height={48} width={42} />
         </div>
         <div>
           <div className="active-link cursor-pointer">
-            <Image alt="" height={0} width={0} src="/images/dashboard.png" />
+            <Dashboard selected />
             <a href="#">
               <p>Dashboard</p>
             </a>
           </div>
           <div className="icon-link cursor-pointer">
-            <Image alt="" height={0} width={0} src="/images/food.png" />
+            <Food />
             <a href="#">
               <p>Food</p>
             </a>
           </div>
           <div className="icon-link cursor-pointer">
-            <Image alt="" height={0} width={0} src="/images/wallet.png" />
+            <Wallet />
             <a href="#">
               <p>Wallet</p>
             </a>
           </div>
           <div className="icon-link cursor-pointer">
-            <Image alt="" height={0} width={0} src="/images/shop.png" />
+            <Shop />
             <a href="#">
               <p>Shop</p>
             </a>
           </div>
           <div className="icon-link cursor-pointer">
-            <Image alt="" height={0} width={0} src="/images/cart.png" />
+            <Cart />
             <a href="#">
               <p>Cart</p>
             </a>
           </div>
           <div className="icon-link cursor-pointer">
-            <Image alt="" height={0} width={0} src="/images/settings.png" />
+            <Settings />
             <a href="#">
               <p>Settings</p>
             </a>
           </div>
           <div className="icon-link cursor-pointer">
-            <Image alt="" height={0} width={0} src="/images/logout.png" />
+            <Logout />
             <a href="#">
               <p>Logout</p>
             </a>
@@ -64,10 +71,10 @@ const DashboardTemplate = ({ pageName, loading, success, children }) => {
             </h1>
             <p>{new Date().toDateString()}</p>
           </div>
-          <form className="search-form">
+          <form className="search-form hidden md:block">
             <input type="text" placeholder="Search for food, drinks, etc .." />
           </form>
-          <div id="user">
+          <div className="flex" id="user">
             {/* <div>
               <Image
                 alt=""
@@ -76,7 +83,7 @@ const DashboardTemplate = ({ pageName, loading, success, children }) => {
                 src="/images/notification.png"
               />
             </div> */}
-            <div id="user-profile">
+            <div className="flex" id="user-profile">
               <div className="user-image">
                 <Image
                   alt=""
