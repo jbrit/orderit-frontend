@@ -10,6 +10,14 @@ export async function myWallet() {
   return response.data;
 }
 
+export async function myTransactions() {
+  const response = await api.request(`/wallet/transactions/`, {
+    method: "GET",
+    requiresAuthentication: true,
+  });
+  return response.data;
+}
+
 export async function verifyPayment(reference) {
   const response = await api.request(`/wallet/paystack-callback/`, {
     method: "POST",

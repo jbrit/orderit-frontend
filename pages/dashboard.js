@@ -3,9 +3,11 @@ import { useQuery } from "react-query";
 import { getMe } from "../actions/auth";
 import DashboardTemplate from "../components/DashboardTemplate";
 import DashboardMain from "../components/DashboardMain";
+import { redirectLoggedOut } from "../utils/utils";
 
 export default function Dashboard() {
   const getMeQuery = useQuery("me", getMe);
+  redirectLoggedOut();
   return (
     <div>
       <Head>

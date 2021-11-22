@@ -1,4 +1,5 @@
 import axios from "axios";
+import { logout } from "../actions/auth";
 import Config from "../config";
 import { LocalStorage } from "./storage";
 
@@ -19,7 +20,14 @@ export class Client {
           return Promise.reject(error);
         }
         // Correct Later
-        if (error.response.data.message.includes("token not valid")) {
+        if (
+          error.response.data.message.includes("token not valid") ||
+          error.response.data.message.includes("Token is invalid")
+        ) {
+          if (error.config.url.includes("/token/refresh/")) {
+            logout();
+            return Promise.reject(error);
+          }
           const refreshToken = await this.storage.getItem(this.refreshTokenKey);
 
           let token = {};

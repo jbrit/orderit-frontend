@@ -1,3 +1,4 @@
+import router from "next/router";
 import { api } from "../utils/api";
 
 export async function login(email, password) {
@@ -45,4 +46,9 @@ export async function getMe() {
     requiresAuthentication: true,
   });
   return response.data;
+}
+
+export async function logout() {
+  await api.removeToken();
+  router.push("/login");
 }

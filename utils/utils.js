@@ -1,3 +1,6 @@
+import router from "next/router";
+import { api } from "./api";
+
 export const getError = (error) => {
   const message = error?.body?.message;
   if (!message) return null;
@@ -10,3 +13,6 @@ export const capitalize = (word) => {
     .toLowerCase()
     .replace(/\w/, (firstLetter) => firstLetter.toUpperCase());
 };
+
+export const redirectLoggedOut = () =>
+  api.getToken().catch(() => router.push("/login"));

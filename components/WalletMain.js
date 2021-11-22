@@ -3,10 +3,11 @@ import TableComponent from "./TableComponent";
 import { payWithPaystack } from "../actions/wallet";
 import Swal from "sweetalert2";
 
-const WalletMain = ({ walletQuery, getMeQuery }) => {
+const WalletMain = ({ transactionsQuery, getMeQuery }) => {
   const { balance, amount_received, amount_sent, amount_spent } =
-    walletQuery.data ?? {};
+  getMeQuery.data?.wallet ?? {};
   const { email } = getMeQuery.data ?? {};
+  console.log(transactionsQuery.data)
   return (
     <>
       <div className="dashboard-container py-10">

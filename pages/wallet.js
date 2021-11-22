@@ -1,13 +1,15 @@
 import Head from "next/head";
 import { useQuery } from "react-query";
 import { getMe } from "../actions/auth";
-import { myWallet } from "../actions/wallet";
+import { myTransactions } from "../actions/wallet";
 import DashboardTemplate from "../components/DashboardTemplate";
 import WalletMain from "../components/WalletMain";
+import { redirectLoggedOut } from "../utils/utils";
 
 export default function Wallet() {
   const getMeQuery = useQuery("me", getMe);
-  const walletQuery = useQuery("my-wallet", myWallet);
+  const transactionsQuery = useQuery("my-transactions", myTransactions);
+  redirectLoggedOut();
   return (
     <div>
       <Head>
@@ -19,10 +21,13 @@ export default function Wallet() {
       </Head>
       <DashboardTemplate
         pageName={"Wallet"}
-        loading={getMeQuery.isLoading || walletQuery.isLoading}
-        success={getMeQuery.isSuccess && walletQuery.isSuccess}
+        loading={getMeQuery.isLoading}
+        success={getMeQuery.isSuccess}
       >
-        <WalletMain getMeQuery={getMeQuery} walletQuery={walletQuery} />
+        <WalletMain
+          getMeQuery={getMeQuery}
+          transactionsQuery={transactionsQuery}
+        />
       </DashboardTemplate>
     </div>
   );

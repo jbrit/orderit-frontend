@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import Food from "./menu-icons/Food";
 import Wallet from "./menu-icons/Wallet";
 import Cart from "./menu-icons/Cart";
@@ -9,13 +8,14 @@ import Settings from "./menu-icons/Settings";
 import Dashboard from "./menu-icons/Dashboard";
 import Logout from "./menu-icons/Logout";
 import NavLink from "./NavLink";
+import { logout } from "../actions/auth";
 
 const DashboardTemplate = ({ pageName, loading, success, children }) => {
   return (
     <main className="flex relative min-h-screen" id="wrapper">
       <section id="side-bar">
         <div className="flex items-center justify-center" id="branding">
-          <Image alt="" src="/images/logo.png" height={48} width={42} />
+          <Image alt="" src="/images/logo.svg" height={48} width={42} />
         </div>
         <div>
           <NavLink route="dashboard" LinkIcon={Dashboard} />
@@ -24,7 +24,7 @@ const DashboardTemplate = ({ pageName, loading, success, children }) => {
           <NavLink route="shop" LinkIcon={Shop} />
           <NavLink route="cart" LinkIcon={Cart} />
           <NavLink route="settings" LinkIcon={Settings} />
-          <div className="icon-link cursor-pointer">
+          <div onClick={logout} className="icon-link cursor-pointer">
             <Logout />
             <a href="#">
               <p>Logout</p>
@@ -47,14 +47,6 @@ const DashboardTemplate = ({ pageName, loading, success, children }) => {
             <input type="text" placeholder="Search for food, drinks, etc .." />
           </form>
           <div className="flex" id="user">
-            {/* <div>
-              <Image
-                alt=""
-                height={40}
-                width={40}
-                src="/images/notification.png"
-              />
-            </div> */}
             <div className="flex" id="user-profile">
               <div className="user-image">
                 <Image
