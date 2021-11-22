@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Food from "./menu-icons/Food";
 import Wallet from "./menu-icons/Wallet";
 import Cart from "./menu-icons/Cart";
@@ -7,6 +8,7 @@ import Shop from "./menu-icons/Shop";
 import Settings from "./menu-icons/Settings";
 import Dashboard from "./menu-icons/Dashboard";
 import Logout from "./menu-icons/Logout";
+import NavLink from "./NavLink";
 
 const DashboardTemplate = ({ pageName, loading, success, children }) => {
   return (
@@ -16,42 +18,12 @@ const DashboardTemplate = ({ pageName, loading, success, children }) => {
           <Image alt="" src="/images/logo.png" height={48} width={42} />
         </div>
         <div>
-          <div className="active-link cursor-pointer">
-            <Dashboard selected />
-            <a href="#">
-              <p>Dashboard</p>
-            </a>
-          </div>
-          <div className="icon-link cursor-pointer">
-            <Food />
-            <a href="#">
-              <p>Food</p>
-            </a>
-          </div>
-          <div className="icon-link cursor-pointer">
-            <Wallet />
-            <a href="#">
-              <p>Wallet</p>
-            </a>
-          </div>
-          <div className="icon-link cursor-pointer">
-            <Shop />
-            <a href="#">
-              <p>Shop</p>
-            </a>
-          </div>
-          <div className="icon-link cursor-pointer">
-            <Cart />
-            <a href="#">
-              <p>Cart</p>
-            </a>
-          </div>
-          <div className="icon-link cursor-pointer">
-            <Settings />
-            <a href="#">
-              <p>Settings</p>
-            </a>
-          </div>
+          <NavLink route="dashboard" LinkIcon={Dashboard} />
+          <NavLink route="food" LinkIcon={Food} />
+          <NavLink route="wallet" LinkIcon={Wallet} />
+          <NavLink route="shop" LinkIcon={Shop} />
+          <NavLink route="cart" LinkIcon={Cart} />
+          <NavLink route="settings" LinkIcon={Settings} />
           <div className="icon-link cursor-pointer">
             <Logout />
             <a href="#">

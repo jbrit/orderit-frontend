@@ -4,3 +4,9 @@ export const getError = (error) => {
   if (typeof message === "string") return message;
   return message[Object.keys(message)[0]][0];
 };
+
+export const capitalize = (word) => {
+  return word
+    .toLowerCase()
+    .replace(/\w/, (firstLetter) => firstLetter.toUpperCase());
+};

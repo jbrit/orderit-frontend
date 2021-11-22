@@ -18,7 +18,7 @@
   background-color: white;
   display: block;
 }
-#side-bar .icon-link {
+.icon-link {
   height: 11vh;
   display: flex;
   flex-direction: column;
@@ -26,7 +26,10 @@
   justify-content: center;
   align-items: center;
 }
-#side-bar .icon-link p {
+.icon-link:hover {
+  background-color: #fafafa;
+}
+.icon-link p {
   text-align: center;
   color: #464255;
   font-size: 12px;
