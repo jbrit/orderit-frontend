@@ -8,7 +8,7 @@ const ShoppingCard = () => {
       style={{ height: "226px", width: "192px" }}
     >
       <span className="block">
-        <Image alt="" src="/images/food.png" height={100} width={100} />
+        <Image alt="" src="/images/indomie.png" height={100} width={100} />
       </span>
       <div className="mx-auto" style={{ width: "144px" }}>
         <div className="font-medium mb-1">Carton of Indomie</div>
