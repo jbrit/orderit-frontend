@@ -17,8 +17,8 @@ export default function Food() {
       </Head>
       <DashboardTemplate
         pageName={"Food"}
-        loading={false}
-        success={true}
+        loading={getMeQuery.isLoading}
+        success={getMeQuery.isSuccess}
       >
         <>
           <div className="dashboard-container py-10">
