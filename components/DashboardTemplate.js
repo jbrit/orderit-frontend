@@ -48,7 +48,7 @@ const DashboardTemplate = ({ pageName, loading, success, children }) => {
           </form>
           <div className="flex" id="user">
             <div className="flex" id="user-profile">
-              <div className="user-image">
+              <div className="user-image mr-3">
                 <Image
                   alt=""
                   height={50}
@@ -57,15 +57,9 @@ const DashboardTemplate = ({ pageName, loading, success, children }) => {
                 />
               </div>
               <div id="user-info">
-                <h4>Hello User</h4>
-                <div>
-                  Student{" "}
-                  <Image
-                    alt=""
-                    height={0}
-                    width={0}
-                    src="/images/caret-down.png"
-                  />
+                <h4>Welcome!</h4>
+                <div style={{color: "#AAAAAA"}} className="text-sm">
+                  Student Account
                 </div>
               </div>
             </div>

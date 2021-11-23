@@ -4,8 +4,13 @@ import { payWithPaystack } from "../actions/wallet";
 import Swal from "sweetalert2";
 
 const WalletMain = ({ transactionsQuery, getMeQuery }) => {
-  const { balance, amount_received, amount_sent, amount_spent } =
-    getMeQuery.data?.wallet ?? {};
+  const {
+    balance,
+    amount_received,
+    amount_sent,
+    amount_spent,
+    id: wallet_id,
+  } = getMeQuery.data?.wallet ?? {};
   const { email } = getMeQuery.data ?? {};
   console.log(transactionsQuery.data);
   const transactions = transactionsQuery.data ?? [];
@@ -75,10 +80,13 @@ const WalletMain = ({ transactionsQuery, getMeQuery }) => {
         <div className="font-semibold text-2xl mb-4">Transaction History</div>
         <TableComponent
           transactions={transactions.map((t) => ({
-            type: "Credit",
-            method: t.transaction_type,
+            type:
+              t.transaction_type === "EW"
+                ? "Paystack Deposit"
+                : "Internal Transfer",
+            method: t.destination === wallet_id ? "Credit" : "Debit",
             amount: t.amount,
-            date: (new Date(t.created_at)).toDateString(),
+            date: new Date(t.created_at).toDateString(),
           }))}
         />
       </div>

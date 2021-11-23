@@ -1,4 +1,5 @@
 import React from "react";
+import OrderReportTable from "./OrderReportTable";
 
 const DashboardMain = ({ getMeQuery }) => {
   const { email } = getMeQuery.data ?? {};
@@ -23,6 +24,7 @@ const DashboardMain = ({ getMeQuery }) => {
           </div>
         </div>
         <div className="font-semibold text-2xl mb-4">Order Report</div>
+        <OrderReportTable />
       </div>
     </>
   );
