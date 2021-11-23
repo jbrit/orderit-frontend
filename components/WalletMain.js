@@ -5,9 +5,10 @@ import Swal from "sweetalert2";
 
 const WalletMain = ({ transactionsQuery, getMeQuery }) => {
   const { balance, amount_received, amount_sent, amount_spent } =
-  getMeQuery.data?.wallet ?? {};
+    getMeQuery.data?.wallet ?? {};
   const { email } = getMeQuery.data ?? {};
-  console.log(transactionsQuery.data)
+  console.log(transactionsQuery.data);
+  const transactions = transactionsQuery.data ?? [];
   return (
     <>
       <div className="dashboard-container py-10">
@@ -33,7 +34,7 @@ const WalletMain = ({ transactionsQuery, getMeQuery }) => {
                   if (value < 100) {
                     return "You need up to N100 to fund your wallet";
                   }
-                  if (parseInt(value / 100) !== value/100) {
+                  if (parseInt(value / 100) !== value / 100) {
                     return "You can only fund a wallet in multiples of N100";
                   }
                 },
@@ -72,7 +73,14 @@ const WalletMain = ({ transactionsQuery, getMeQuery }) => {
           </div>
         </div>
         <div className="font-semibold text-2xl mb-4">Transaction History</div>
-        <TableComponent />
+        <TableComponent
+          transactions={transactions.map((t) => ({
+            type: "Credit",
+            method: t.transaction_type,
+            amount: t.amount,
+            date: (new Date(t.created_at)).toDateString(),
+          }))}
+        />
       </div>
     </>
   );
