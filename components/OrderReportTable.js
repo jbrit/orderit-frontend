@@ -1,7 +1,10 @@
 import router from "next/router";
+import { useQuery } from "react-query";
+import { getMyOrders } from "../actions/food";
 
 export default function OrderReportTable() {
-  const transactions = [];
+  const getMyOrdersQuery = useQuery("my-orders", getMyOrders);
+  const transactions = getMyOrdersQuery.data ?? [];
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -46,19 +49,21 @@ export default function OrderReportTable() {
                 {transactions.map((transaction, idx) => (
                   <tr key={idx}>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                      {transaction.type}
+                      {transaction.reference}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {transaction.method}
+                      {transaction.order
+                        .map((item) => item.item.name)
+                        .join(" | ")}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {transaction.amount}
+                      {transaction.total_order_price}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {transaction.date}
+                      N/A
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {transaction.date}
+                      {transaction.status}
                     </td>
                   </tr>
                 ))}
