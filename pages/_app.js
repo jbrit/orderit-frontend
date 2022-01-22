@@ -1,9 +1,10 @@
 import "../styles/globals.css";
 import "../styles/dashboard-style.css";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { useState } from "react";
 
 function MyApp({ Component, pageProps }) {
-  const queryClient = new QueryClient();
+  const [queryClient] = useState(() => new QueryClient());
   return (
     <QueryClientProvider client={queryClient}>
       <Component {...pageProps} />

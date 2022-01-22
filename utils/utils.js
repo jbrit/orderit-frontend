@@ -16,3 +16,38 @@ export const capitalize = (word) => {
 
 export const redirectLoggedOut = () =>
   api.getToken().catch(() => router.push("/login"));
+
+export const getMonth = (date = new Date()) => {
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  return months[date.getMonth()];
+};
+
+export const getCategory = (item) => {
+  switch (item.category) {
+    case "Main Dish":
+      return "Food";
+    case "Swallow":
+      return "Food";
+    case "Drinks and Beverages":
+      return "Drink";
+    case "Garnish":
+      return "Extra";
+    case "Snacks":
+      return "Snack";
+    default:
+      return item.category;
+  }
+};

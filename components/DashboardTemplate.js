@@ -43,9 +43,6 @@ const DashboardTemplate = ({ pageName, loading, success, children }) => {
             </h1>
             <p>{new Date().toDateString()}</p>
           </div>
-          <form className="search-form hidden md:block">
-            <input type="text" placeholder="Search for food, drinks, etc .." />
-          </form>
           <div className="flex" id="user">
             <div className="flex" id="user-profile">
               <div className="user-image mr-3">
