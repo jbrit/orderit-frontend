@@ -1,8 +1,9 @@
 import Head from "next/head";
 import { useState } from "react";
 import { useQuery } from "react-query";
+import Swal from "sweetalert2";
 import { getMe } from "../actions/auth";
-import { getMeals, getOrderItems } from "../actions/food";
+import { getMeals, getOrderItems, placeOrder } from "../actions/food";
 import DashboardTemplate from "../components/DashboardTemplate";
 import FoodCard from "../components/FoodCard";
 import { getCategory, redirectLoggedOut } from "../utils/utils";
@@ -38,7 +39,10 @@ export default function Food() {
     selectedMeal && setSelectedMeal([...selectedMeal, { item, quantity }]);
   const removeMeal = (index) =>
     setSelectedMeal(selectedMeal.filter((meal, idx) => idx !== index));
-  console.log(selectedMeal);
+
+  const items = selectedMeal.map((meal) => meal.item.id).join(",");
+  const item_quantities = selectedMeal.map((meal) => meal.quantity).join(",");
+
   return (
     <div>
       <Head>
@@ -194,6 +198,34 @@ export default function Food() {
                       )
                       .reduce((a, b) => a + b, 0)}
                   </span>
+                </div>
+                <div>
+                  <button
+                    style={{ backgroundColor: "#251F2D" }}
+                    className="text-white text-sm font-semibold px-20 py-2 rounded mt-1"
+                    onClick={() =>
+                      placeOrder({
+                        items,
+                        item_quantities,
+                      })
+                        .then(() => {
+                          Swal.fire(
+                            "Success",
+                            "Meal Ordered Successfully",
+                            "success"
+                          );
+                        })
+                        .catch((error) =>
+                          Swal.fire(
+                            "Ordering Error",
+                            getError(error) ?? "Could not order the meal",
+                            "error"
+                          )
+                        )
+                    }
+                  >
+                    Place Order
+                  </button>
                 </div>
               </div>
             </main>
