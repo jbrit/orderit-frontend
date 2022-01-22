@@ -7,7 +7,6 @@ import OrderReportTable from "./OrderReportTable";
 const DashboardMain = ({ getMeQuery }) => {
   const { amount_spent } = getMeQuery.data.wallet;
   const getMyOrdersQuery = useQuery("my-orders", getMyOrders);
-  console.log(getMeQuery.data.wallet);
   const transactions = getMyOrdersQuery.data ?? [];
   return (
     <>

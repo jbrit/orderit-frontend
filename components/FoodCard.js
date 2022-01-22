@@ -5,7 +5,6 @@ import { placeOrder } from "../actions/food";
 import { getError } from "../utils/utils";
 
 const FoodCard = ({ meal }) => {
-  console.log(meal);
   const { name, image, total_price } = meal;
   const item_ids = meal.items.map((item) => item.id);
   return (

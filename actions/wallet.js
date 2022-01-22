@@ -46,7 +46,6 @@ export function payWithPaystack(email, amount) {
         .catch(() => {
           Swal.fire("Payment Error", "Could not verify payment", "error");
         });
-      console.log(message);
     },
   });
   handler.openIframe();

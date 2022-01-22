@@ -12,7 +12,6 @@ const WalletMain = ({ transactionsQuery, getMeQuery }) => {
     id: wallet_id,
   } = getMeQuery.data?.wallet ?? {};
   const { email } = getMeQuery.data ?? {};
-  console.log(transactionsQuery.data);
   const transactions = transactionsQuery.data ?? [];
   return (
     <>

@@ -30,6 +30,13 @@ export default function Food() {
   );
   const [foodCategory, setFoodCategory] = useState("Food");
   redirectLoggedOut();
+
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItemQuantity, setSelectedItemQuantity] = useState(1);
+  const [selectedMeal, setSelectedMeal] = [];
+  const addMeal = (item, quantity) =>
+    selectedMeal && setSelectedMeal({ item, quantity });
+  console.log(selectedItem);
   return (
     <div>
       <Head>
@@ -54,7 +61,10 @@ export default function Food() {
                     style={{ borderColor: "#251F2D" }}
                     className="border bg-transparent focus:outline-none rounded"
                     value={foodCategory}
-                    onChange={(e) => setFoodCategory(e.target.value)}
+                    onChange={(e) => {
+                      setFoodCategory(e.target.value);
+                      setSelectedItem(null);
+                    }}
                   >
                     <option value="Food">Food</option>
                     <option value="Extra">Extra</option>
@@ -81,12 +91,17 @@ export default function Food() {
                     <select
                       style={{ borderColor: "#251F2D" }}
                       className="border bg-transparent focus:outline-none rounded w-full p-1"
+                      value={selectedItem ? selectedItem : ""}
+                      onChange={(e) => setSelectedItem(e.target.value)}
                     >
                       {orderItems[foodCategory].map((item, idx) => (
-                        <option key={idx} value={item.id}>
+                        <option key={idx} value={JSON.stringify(item)}>
                           {item.name}
                         </option>
                       ))}
+                      <option value="" disabled>
+                        Select Item
+                      </option>
                     </select>
                   </div>
                   <div className="col-span-2 relative">
@@ -101,10 +116,12 @@ export default function Food() {
                     >
                       Price
                     </span>
-                    <select
+                    <input
                       style={{ borderColor: "#251F2D" }}
                       className="border bg-transparent focus:outline-none rounded w-full p-1"
-                    ></select>
+                      value={selectedItem ? JSON.parse(selectedItem).price : ""}
+                      disabled
+                    />
                   </div>
                   <div className="col-span-2 relative">
                     <span
@@ -121,7 +138,12 @@ export default function Food() {
                     <select
                       style={{ borderColor: "#251F2D" }}
                       className="border bg-transparent focus:outline-none rounded w-full p-1"
-                    ></select>
+                      value={selectedItemQuantity}
+                      onChange={(e) => setSelectedItemQuantity(e.target.value)}
+                    >
+                      <option value={1}>1</option>
+                      <option value={2}>2</option>
+                    </select>
                   </div>
                 </div>
                 <div
@@ -131,6 +153,10 @@ export default function Food() {
                   <button
                     style={{ backgroundColor: "#251F2D" }}
                     className="text-white text-sm font-semibold px-20 py-2 rounded mt-1"
+                    onClick={() =>
+                      selectedItem &&
+                      addMeal(JSON.parse(selectedItem), selectedItemQuantity)
+                    }
                   >
                     Select
                   </button>
