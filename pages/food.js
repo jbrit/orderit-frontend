@@ -33,10 +33,10 @@ export default function Food() {
 
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedItemQuantity, setSelectedItemQuantity] = useState(1);
-  const [selectedMeal, setSelectedMeal] = [];
+  const [selectedMeal, setSelectedMeal] = useState([]);
   const addMeal = (item, quantity) =>
-    selectedMeal && setSelectedMeal({ item, quantity });
-  console.log(selectedItem);
+    selectedMeal && setSelectedMeal([...selectedMeal, { item, quantity }]);
+  console.log(selectedMeal);
   return (
     <div>
       <Head>
@@ -164,9 +164,21 @@ export default function Food() {
               </div>
               <div className="p-4 bg-white" style={{ marginTop: "60px" }}>
                 <div className="uppercase font-bold mb-4">Selected Meal</div>
+                <ul>
+                  {selectedMeal.map((meal, idx) => (
+                    <li className="border-bottom py-2 border-slate-500" key={idx}>
+                      {meal.item.name} | N {meal.item.price} | {meal.quantity}
+                    </li>
+                  ))}
+                </ul>
                 <div className="uppercase font-semibold flex justify-between items-center">
                   <span>Total</span>
-                  <span>N1,200</span>
+                  <span>
+                    N{" "}
+                    {selectedMeal
+                      .map((meal_set) => meal_set.item.price * meal_set.quantity)
+                      .reduce((a, b) => a + b, 0)}
+                  </span>
                 </div>
               </div>
             </main>

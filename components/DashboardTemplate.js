@@ -3,7 +3,6 @@ import Image from "next/image";
 import Food from "./menu-icons/Food";
 import Wallet from "./menu-icons/Wallet";
 import Shop from "./menu-icons/Shop";
-import Settings from "./menu-icons/Settings";
 import Dashboard from "./menu-icons/Dashboard";
 import Logout from "./menu-icons/Logout";
 import NavLink from "./NavLink";
@@ -21,7 +20,7 @@ const DashboardTemplate = ({ pageName, loading, success, children }) => {
           <NavLink route="food" LinkIcon={Food} />
           <NavLink route="wallet" LinkIcon={Wallet} />
           <NavLink route="shop" LinkIcon={Shop} />
-          <NavLink route="settings" LinkIcon={Settings} />
+          {/* <NavLink route="settings" LinkIcon={Settings} /> */}
           <div onClick={logout} className="icon-link cursor-pointer">
             <Logout />
             <a href="#">
